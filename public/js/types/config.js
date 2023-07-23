@@ -1,12 +1,10 @@
-import { Bsdal } from './bsdal.js';
-
-const config: Config = {
+const config = {
     bsdal: {
         name: 'Bsdal',
         trans: [
             {
                 name: 'Transcension',
-                values: [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 99, 100, 200, 300, 400, 500 ],
+                values: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 99, 100, 200, 300, 400, 500],
                 table: [
                     {
                         amount: 100,
@@ -53,8 +51,8 @@ const config: Config = {
             },
             {
                 name: 'Ultra Transcension',
-                caps: [ 3 ],
-                values: [ 100, 150, 200, 250, 300 ],
+                caps: [3],
+                values: [100, 150, 200, 250, 300],
                 table: [
                     {
                         amount: 100,
@@ -90,15 +88,9 @@ const config: Config = {
         ],
     },
 };
-
-export function getConfig(): Config {
+export function getConfig() {
     return config;
 }
-
-export function getConfigPage<TGame extends keyof Config, TPage extends keyof Config[TGame]>(game: TGame, page: TPage): Config[TGame][TPage] {
+export function getConfigPage(game, page) {
     return config[game][page];
 }
-
-export type Config = {
-    bsdal: Bsdal,
-};

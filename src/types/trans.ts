@@ -6,7 +6,7 @@ export type Trans = {
 };
 
 export type TransItem = {
-    amount: 20,
+    amount: number,
     formula: TransFormulaItem[],
 };
 
