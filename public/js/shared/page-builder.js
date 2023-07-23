@@ -1,3 +1,6 @@
+export function wrapElement(element) {
+    return { parent: element };
+}
 export function createElement(tag, assigner = () => { }) {
     const element = document.createElement(tag);
     assigner(element);

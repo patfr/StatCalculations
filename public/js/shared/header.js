@@ -1,16 +1,19 @@
 import { getConfig } from "../types/config.js";
+import { buildPage, createElement, createElementForEach, wrapElement } from "./page-builder.js";
+const config = getConfig();
 export function createHeader() {
-    const config = getConfig();
-    const nav = document.createElement('nav');
-    const ul = document.createElement('ul');
-    for (const key of Object.keys(config)) {
-        const li = document.createElement('li');
-        li.textContent = config[key].name;
-        ul.appendChild(li);
-    }
-    nav.appendChild(ul);
     const header = document.querySelector('header');
     if (header === null)
         return;
-    header.appendChild(nav);
+    buildPage({
+        parent: header,
+        children: [{
+                parent: createElement('nav'),
+                children: [{
+                        parent: createElement('ul'),
+                        children: createElementForEach(Object.keys(config), createNavItem),
+                    }],
+            }],
+    });
 }
+const createNavItem = (key) => wrapElement(createElement('li', e => e.textContent = config[key].name));

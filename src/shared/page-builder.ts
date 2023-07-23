@@ -1,3 +1,9 @@
+export function wrapElement<TElement extends HTMLElementTagNameMap[keyof HTMLElementTagNameMap]>(
+    element: TElement
+): PageOptions<TElement> {
+    return { parent: element };
+}
+
 export function createElement<TKey extends keyof HTMLElementTagNameMap>(
     tag: TKey,
     assigner: (element: HTMLElementTagNameMap[TKey]) => void = () => {}
@@ -34,7 +40,7 @@ export function buildPage<TElement extends HTMLElementTagNameMap[keyof HTMLEleme
     return options.parent;
 }
 
-type PageOptions<TElement extends HTMLElementTagNameMap[keyof HTMLElementTagNameMap]> = {
+export type PageOptions<TElement extends HTMLElementTagNameMap[keyof HTMLElementTagNameMap]> = {
     parent: TElement,
     children?: PageOptions<HTMLElementTagNameMap[keyof HTMLElementTagNameMap]>[],
 }
